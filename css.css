@@ -1,9 +1,11 @@
 #container {
+    box-sizing: border-box;
     display: flex;
+    flex-wrap: wrap;
     width: 960px;
     height: 960px;
 }
 
-.square {
-    border: solid black;
+.square:hover {
+    background-color: white;
 }
