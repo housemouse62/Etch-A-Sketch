@@ -1,24 +1,25 @@
+let squaresPerSide;
 
-function numberOfSquares() {
-const numberOfSquaresPerSidePrompt = prompt("How many squares per side do you want for your Etch-A-Sketch?", 0);
-if (numberOfSquaresPerSidePrompt > 100) {
-    alert("Don't get greedy, choose a number of less than 100 please");
-    numberOfSquares();
+const userPrompt = () => {
+while (true) {
+    squaresPerSide = prompt("How many squares per side do you want for your Etch-A-Sketch?\nNo higher than 100 please, we don't wanna crash the system!", 0);
+if (squaresPerSide > 100) {
+    alert("Number too high");
+    continue;
 } else {
-    const numberOfSquaresPerSide = numberOfSquaresPerSidePrompt;
     return;
 }
-}
+}};
+userPrompt();
 
-numberOfSquares();
 const container = document.querySelector("#container");
 
-const squareHeightAndWidth = (960 / numberOfSquaresPerSide) + "px";
+const oneSquareSide = (960 / squaresPerSide) + "px";
 
 const createDivs = (parent) => {
     const newSquare = document.createElement("div");
-    newSquare.style.width = squareHeightAndWidth;
-    newSquare.style.height = squareHeightAndWidth;
+    newSquare.style.width = oneSquareSide;
+    newSquare.style.height = oneSquareSide;
     newSquare.style.backgroundColor = "lightblue";
     newSquare.classList.add("square");
     parent.append(newSquare);
@@ -27,19 +28,16 @@ const createDivs = (parent) => {
     newSquare.style.backgroundColor = "white";
     });
 
-    newSquare.addEventListener("mouseout", () => {
-    newSquare.style.backgroundColor = "lightblue";
-    });
-
-    console.log(newSquare);
+//    newSquare.addEventListener("mouseout", () => {
+//    newSquare.style.backgroundColor = "lightblue";
+//   });
 }
 
-for (let i = 1; i <= (numberOfSquaresPerSide * numberOfSquaresPerSide); i++) {
+for (let i = 1; i <= (squaresPerSide * squaresPerSide); i++) {
     createDivs(container);
-}
+ }
 
 const newSquare = document.querySelector(".square");
 
 
 
-console.log(newSquare)
